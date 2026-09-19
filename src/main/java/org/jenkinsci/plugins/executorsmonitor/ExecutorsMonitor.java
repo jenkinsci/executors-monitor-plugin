@@ -15,6 +15,8 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.export.Exported;
+import org.kohsuke.stapler.export.ExportedBean;
 import org.kohsuke.stapler.verb.POST;
 
 /**
@@ -217,6 +219,7 @@ public class ExecutorsMonitor extends NodeMonitor {
         }
     }
 
+    @ExportedBean
     public static final class Executors implements Serializable {
         private static final long serialVersionUID = 1L;
 
@@ -236,6 +239,7 @@ public class ExecutorsMonitor extends NodeMonitor {
             this.queued = queued;
         }
 
+        @Exported
         public int getBusy() {
             return busy;
         }
@@ -245,6 +249,7 @@ public class ExecutorsMonitor extends NodeMonitor {
          * May temporarily differ from {@link #getConfigured()} if the configured
          * executor count was lowered while tasks were still running on it.
          */
+        @Exported
         public int getTotal() {
             return total;
         }
@@ -253,6 +258,7 @@ public class ExecutorsMonitor extends NodeMonitor {
          * The number of executors configured on the node itself, regardless of how
          * many are momentarily live on the computer.
          */
+        @Exported
         public int getConfigured() {
             return configured;
         }
@@ -261,6 +267,7 @@ public class ExecutorsMonitor extends NodeMonitor {
          * The number of buildable queue items that this node could take, or {@code null} if
          * that count was not requested (see {@link ExecutorsMonitor#isCountQueue()}).
          */
+        @Exported
         public Integer getQueued() {
             return queued;
         }
